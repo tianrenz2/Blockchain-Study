@@ -142,6 +142,7 @@ func readData(rw *bufio.ReadWriter)  {
 		}
 		if str != "\n"{
 			chain := make([]Block, 0)
+			//Unmarshal: Convert json data in string to json in go format
 			if err := json.Unmarshal([]byte(str), &chain); err != nil {
 				log.Fatal(err)
 			}
@@ -166,6 +167,7 @@ func writeData(rw *bufio.ReadWriter)  {
 		for {
 			time.Sleep(5 * time.Second)
 			mutex.Lock()
+			//Marshal: Convert Go format json data to bytes(string)
 				bytes, err := json.Marshal(Blockchain)
 			if err != nil {
 				log.Println(err)
